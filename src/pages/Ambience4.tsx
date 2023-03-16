@@ -5,11 +5,44 @@ import {
     Container,
     VStack,
     Image,
+    IconButton,
 } from "@chakra-ui/react"
-
+import { MdAudiotrack, MdPlayArrow } from "react-icons/md";
 import quietbar from '../quietbar.png';
+import React, { useEffect, useState } from 'react';
+import joy from '../assets/joyful.wav';
+import quietbaraudio from '../assets/quietbar-audio.wav';
+import neutral from '../assets/neutral.wav';
+import lombard from '../assets/lombard.wav';
+
+// @ts-ignore
+const useAudio = playaudio => {
+  const [audio] = useState(new Audio(playaudio));
+  const [playing, setPlaying] = useState(false);
+  const toggle = () => {setPlaying(!playing)};
+  useEffect(() => {
+      playing ? audio.play() : audio.pause();
+    },
+    [playing]
+  );
+  useEffect(() => {
+    audio.addEventListener('ended', () => { 
+      setPlaying(false);
+     });
+    return () => {
+      audio.pause();
+      audio.removeEventListener('ended', () => setPlaying(false));
+    };
+  }, []);
+  return [playing, toggle];
+};
 
 export const Ambience4 = (): any => {
+    // @ts-ignore
+    const [playingformal, togglequietbar] = useAudio(quietbaraudio);
+    const [playingjoy, togglejoy] = useAudio(joy);
+    const [playingneutral, toggleneutral] = useAudio(neutral);
+    const [playinglombard, togglelombard] = useAudio(lombard);
     return (
         <Box textAlign="center" fontSize="xl">
           <VStack spacing={4}>
@@ -20,22 +53,54 @@ export const Ambience4 = (): any => {
             invested in a wide variety of available food. A customer wants to order something that is not
             on the menu.
             </Container>
-            <Image src= {quietbar} alt='Quiet Bar Ambience' maxWidth={"54%"} />
+            <Image src= {quietbar} alt='Quiet Bar Ambience' maxWidth={"34%"} />
+            <Heading fontSize={{ base: '16px', md: '20px', lg: '30px' }}>
+                Ambiant Background
+            </Heading>
+            <IconButton
+                color='#FC8181'
+                aria-label='Call Sage'
+                fontSize='20px'
+                icon={<MdPlayArrow />}
+                // @ts-ignore
+                onClick={() => {togglequietbar()}}
+              />
             <Grid templateColumns='repeat(3, 1fr)' gap={5} >
               <Heading fontSize={{ base: '16px', md: '20px', lg: '30px' }}>
-                  Voice Conversion
+                  Joyful Voice
               </Heading>
               <Heading fontSize={{ base: '16px', md: '20px', lg: '30px' }}>
-                  Baseline Text to Speech
+                  Neutral Voice
               </Heading>
               <Heading fontSize={{ base: '16px', md: '20px', lg: '30px' }}>
-                  Pitch Adaptive Text To Speech
+                  Lombard Voice
               </Heading>
             </Grid>
-            <Grid templateColumns='repeat(3, 1fr)' gap={5} >
-              <iframe width="100%" height="100" scrolling="no" frameBorder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1220072380&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-              <iframe width="100%" height="100" scrolling="no" frameBorder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1220072275&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-              <iframe width="100%" height="100" scrolling="no" frameBorder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1220072335&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+            <Grid templateColumns='repeat(3, 1fr)' gap={180} pb='30px' >
+              <IconButton
+                color='#FC8181'
+                aria-label='Call Sage'
+                fontSize='20px'
+                icon={<MdPlayArrow />}
+                // @ts-ignore
+                onClick={() => {togglejoy()}}
+              />
+              <IconButton
+                color='#FC8181'
+                aria-label='Call Sage'
+                fontSize='20px'
+                icon={<MdPlayArrow />}
+                // @ts-ignore
+                onClick={() => {toggleneutral()}}
+              />
+              <IconButton
+                color='#FC8181'
+                aria-label='Call Sage'
+                fontSize='20px'
+                icon={<MdPlayArrow />}
+                // @ts-ignore
+                onClick={() => {togglelombard()}}
+              />
             </Grid>
           </VStack>
         </Box>

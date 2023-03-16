@@ -79,23 +79,26 @@ export const HomePage = () => (
           paddingTop='15px'
           fontSize={{ base: '10px', md: '10px', lg: '18px' }}
         >
-          Adapting one's voice to different ambient environments and social interactions is
-          required for human social interaction. In robotics, the ability to recognize speech
-          in noisy and quiet environments has received significant attention, but considering
-          ambient cues in the production of social speech features has been little explored.
-          Our research aims to modify a robot’s speech to maximize acceptability in various
-          social and acoustic contexts, starting with a use case for service robots in varying
-          restaurants. We created an original dataset collected over Zoom with participants
-          conversing in scripted and unscripted tasks given 7 different ambient sounds and
-          background images. Voice conversion methods, in addition to altered Text-to-Speech
-          that matched ambient specific data, were used for speech synthesis tasks.  We conducted
-          a subjective perception study that showed that humans prefer synthetic speech that
-          matches ambience and social context, ultimately preferring a more human-like voices.
-          This work provides three solutions to ambient and socially appropriate synthetic voices:
-          (1) a novel protocol to collect real contextual audio voice data, (2) tools and directions
-          to manipulate robot speech for appropriate social and ambient specific interactions,
-          and (3) insight into voice conversion's role in flexibly altering robot speech to
-          match different ambient environments.
+          How should a robot speak in a formal, quiet and dark, or a bright, 
+          lively and noisy environment? By designing robots to speak in a more 
+          social and ambient-appropriate manner we can improve perceived 
+          awareness and intelligence for these agents. We describe a process and 
+          results toward selecting robot voice styles for perceived 
+          social appropriateness and ambiance awareness. Understanding how 
+          humans adapt their voices in different acoustic settings can be 
+          challenging due to difficulties in voicecapture in the wild. Our 
+          approach includes 3 steps: (a) Collecting and validating voice data 
+          interactions in virtual Zoom ambiances, (b) Exploration and clustering 
+          human vocal utterances to identify primary voice styles, and (c) 
+          Testing robot voice styles in recreated ambiances using projections, 
+          lighting and sound. We focus on food service scenarios as a 
+          proof-of-concept setting. We provide results using the Pepper robot's 
+          voice with different styles, towards robots that speak in a 
+          contextually appropriate and adaptive manner. Our results with N=120 
+          participants provide evidence that the choice of voice style in 
+          different ambiances impacted a robot's perceived intelligence in 
+          several factors including: social appropriateness, comfort, awareness, 
+          human-likeness and competency.
         </Text>
         <Container>
           <Image src= {us} alt='Photo of the authors' maxHeight={"45%"} align="center"/>
